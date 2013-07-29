@@ -29,7 +29,6 @@ class TweetParser
   def populate
     loop do
       add_tweets
-      p "#{@since_id}, #{@old_since_id}"
       break tweets if @since_id == @old_since_id 
     end
     @tweets = tweets

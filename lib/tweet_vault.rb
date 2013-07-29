@@ -17,7 +17,7 @@ class TweetVault
   end
 
   def concepts
-    update_tweets
+    # update_tweets
   end
 
   def past_concepts
@@ -45,7 +45,6 @@ class TweetVault
   end
 
   def update_concepts
-    parser.populate
     redis_object = ranker.rank_concepts(words)
     [past_concepts, future_concepts, tweeters].each do |concepts|
       update_redis(concepts)
@@ -82,7 +81,7 @@ class TweetVault
   end
 
   def unranked_tweeters
-    parser.tweeters
+    #parser.tweeters
   end
 
   def words
