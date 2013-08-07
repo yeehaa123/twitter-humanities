@@ -1,4 +1,4 @@
-class TweetFilter
+Class TweetFilter
 
   def filter_words(words)
     words = remove_hashtags(words)

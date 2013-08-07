@@ -66,13 +66,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  guard (~> 1.8.1)
-  guard-minitest (~> 0.5.0)
-  mocha (~> 0.14.0)
-  newrelic_rpm (~> 3.6.6.147)
-  rack-cors (~> 0.2.8)
-  redis (~> 3.0.4)
-  sinatra (~> 1.4.3)
-  twitter (~> 4.8.1)
-  vcr (~> 2.5.0)
-  webmock (~> 1.13.0)
+  guard
+  guard-minitest
+  mocha
+  newrelic_rpm
+  rack-cors
+  redis
+  sinatra
+  twitter
+  vcr
+  webmock
