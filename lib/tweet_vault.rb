@@ -43,7 +43,6 @@ class TweetVault
       redis_object = fetch_concepts
     else
       redis_object = JSON.parse(redis_object)
-      redis.expire('concepts', 1)
     end 
     redis_object
   end
