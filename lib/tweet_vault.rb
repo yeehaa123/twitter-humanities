@@ -7,8 +7,8 @@ class TweetVault
   attr_reader :redis, :ranker, :parser
 
   def initialize(amount_of_tweets)
-    # @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-    @redis ||= Redis.new
+    @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+    # @redis ||= Redis.new
     @ranker ||= TweetRanker.new
     @parser ||= TweetParser.new
     set_past_concepts
