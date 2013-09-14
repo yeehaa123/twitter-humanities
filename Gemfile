@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 ruby "2.0.0"
 
-group :development do
+group :development, :test do
   gem "guard", "~> 1.8.1"
   gem "guard-minitest", "~> 0.5.0"
   gem "vcr", "~> 2.5.0"

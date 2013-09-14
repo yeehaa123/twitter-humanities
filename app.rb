@@ -1,10 +1,7 @@
 require 'sinatra'
 require_relative './lib/tweet_vault'
 require 'rack/cors'
-
-configure :production do
-  require 'newrelic_rpm'
-end
+require 'redis'
 
 use Rack::Cors do |config|
   config.allow do |allow|
@@ -13,8 +10,13 @@ use Rack::Cors do |config|
   end
 end
 
+configure do
+  uri = URI.parse(ENV["REDISCLOUD_URL"])
+  $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+end
+
 before do
-  @vault = TweetVault.new(500) 
+  @vault = TweetVault.new(701)
 end
 
 get '/' do
@@ -26,14 +28,15 @@ get '/api/concepts' do
   @vault.concepts.to_json
 end
 
+get '/api/reset_concepts' do
+  @vault.send(:update_tweets)
+  content_type :json
+  @vault.concepts.to_json
+end
+
 get '/api/past_concepts' do
   content_type :json
   @vault.past_concepts.to_json
-end
-
-get '/api/future_concepts' do
-  content_type :json
-  @vault.future_concepts.to_json
 end
 
 get '/api/tweeters' do

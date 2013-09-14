@@ -20,6 +20,6 @@ class TweetRanker
   def rank(rankable)
     rankable.select! { |concept| concept[:count] > 1 }
     ranked_by_name = rankable.sort_by {|concept| concept[:name] }
-    ranked_by_count = ranked_by_name.sort_by {|concept| concept[:count] }.reverse.take(11)
+    ranked_by_name.sort_by {|concept| concept[:count] }.reverse.take(20)
   end
 end

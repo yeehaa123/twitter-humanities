@@ -11,28 +11,14 @@ describe TweetVault do
     VCR.eject_cassette
   end
 
-  describe "#tweeters" do
-    it "should return the 11 most active tweeters" do
-      vault.tweeters.size.must_equal 11
-    end
-
-    it "should have the right attributes" do
-      vault.tweeters.each do |tweeter|
-        tweeter["name"].must_match /\w*/
-        tweeter["count"].must_be :>=, 2
-        tweeter["ranked"].must_equal true 
-      end
-    end
-  end
-
   describe "#concepts" do
-    it "should return the 11 most tweeted concepts" do
-      vault.concepts.size.must_equal 11
+    it "should return the 20 most tweeted concepts" do
+      vault.concepts.size.must_equal 20
     end
 
     it "should have the right attributes" do
       vault.concepts.each do |concept|
-        concept["name"].must_match /\w*/
+        concept["name"].must_match(/\w*/)
         concept["count"].must_be :>=, 2
         concept["ranked"].must_equal true 
       end
@@ -47,7 +33,7 @@ describe TweetVault do
 
       it "should have the right attributes" do
         vault.past_concepts.each do |concept|
-          concept["name"].must_match /\w*/
+          concept[:name].must_match(/\w*/)
         end
       end
     end

@@ -4,86 +4,66 @@ require_relative 'tweet_parser'
 require 'redis'
 
 class TweetVault
-  attr_reader :redis, :ranker
-  
-  def initialize(amount_of_tweets)
-    @amount_of_tweets = amount_of_tweets
-    @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-    @ranker ||= TweetRanker.new
-  end
+  attr_reader :redis, :ranker, :parser
 
-  def tweeters
-    JSON.parse(redis.get("tweeters"))
+  def initialize(amount_of_tweets)
+    @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+    # @redis ||= Redis.new
+    @ranker ||= TweetRanker.new
+    @parser ||= TweetParser.new
+    set_past_concepts
+    set_future_concepts
   end
 
   def concepts
-    update_tweets
+    update_concepts
   end
 
   def past_concepts
-    JSON.parse(redis.get("past_concepts"))
+    cc = concepts.map {|concept| concept["name"]}
+    @pc.map do |concept|
+      cc.include?(concept) ? concept['ranked'] = true : concept['ranked'] = false
+      concept
+    end
   end
 
   def future_concepts
-    JSON.parse(redis.get("future_concepts"))
+    cc = concepts.map {|concept| concept["name"]}
+    @fc.map do |concept|
+      cc.include?(concept) ? concept['ranked'] = true : concept['ranked'] = false
+      concept
+    end
   end
 
   private
 
-  def parser
-    @parser ||= TweetParser.new
-  end 
-
-  def update_tweets
+  def update_concepts
     redis_object = redis.get("concepts")
     if redis_object == nil
-      update_concepts
+      redis_object = fetch_concepts
     else
       redis_object = JSON.parse(redis_object)
+      redis.expire('concepts', 1)
     end 
     redis_object
   end
 
-  def update_concepts
+  def fetch_concepts
     parser.populate
     redis_object = ranker.rank_concepts(words)
     redis.set("concepts", redis_object.to_json)
-    p redis.get("concepts")
     redis.expire('concepts', 3600)
-    [past_concepts, future_concepts].each do |concepts|
-      update_redis(concepts)
-    end
     redis_object 
   end
 
-  def update_redis(concepts_name)
-    concepts_to_update = redis.get("#{concepts_name}")
-    current_concepts = concepts.map { |concept| concept["name"] } 
-    updated_concepts = concepts_to_update.map do |concept| 
-      if current_concepts.include?(concept["name"])
-        concept["ranked"] = true
-        concept
-      else
-        concept["ranked"] = false
-        concept
-      end
-    end
-    redis.set("#{concepts_name}", updated_concepts.to_json)
-    updated_concepts.shuffle
-  end
-
   def set_past_concepts
-    past_concepts = %w{art job hiring new degree career teacher education neglect oppose history}
-    past_concepts.map {|concept| Hash[:name, concept, :ranked, false]}
+    @pc = %w{art job hiring new degree career teacher education neglect oppose history}
+    @pc.map! {|concept| Hash[:name, concept, :ranked, false]}
   end
 
   def set_future_concepts
-    future_concepts = %w{code algorithm javascript make future ruby html css language data visualisation}
-    future_concepts.map {|concept| Hash[:name, concept, :ranked, false]}
-  end
-
-  def unranked_tweeters
-    parser.tweeters
+    @fc = %w{code algorithm javascript make future ruby html css language data visualisation}
+    @fc.map! {|concept| Hash[:name, concept, :ranked, false]}
   end
 
   def words

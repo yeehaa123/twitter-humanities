@@ -29,7 +29,7 @@ class TweetParser
   def populate
     loop do
       add_tweets
-      p @since_id == @old_since_id
+      @since_id == @old_since_id
       break tweets if @since_id == @old_since_id 
     end
     tweets
@@ -53,7 +53,7 @@ class TweetParser
     if @since_id == 1
       query = Twitter.search("#humanities", count: 100, result_type: "recent")
     else
-     query = Twitter.search("#humanities", count: 100, max_id: @since_id, result_type: "recent")
+      query = Twitter.search("#humanities", count: 100, max_id: @since_id, result_type: "recent")
     end
     tweets.concat(tweet_texts(query.results))
     tweeters.concat(tweet_authors(query.results))

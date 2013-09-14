@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+TweetFilter	lib/tweet_filter.rb	/^class TweetFilter$/;"	c
+TweetParser	lib/tweet_parser.rb	/^class TweetParser$/;"	c
+TweetRanker	lib/tweet_ranker.rb	/^class TweetRanker$/;"	c
+TweetVault	lib/tweet_vault.rb	/^class TweetVault$/;"	c
+add_tweets	lib/tweet_parser.rb	/^  def add_tweets$/;"	f	class:TweetParser
+clean_words	lib/tweet_filter.rb	/^  def clean_words(words)$/;"	f	class:TweetFilter
+concepts	lib/tweet_vault.rb	/^  def concepts$/;"	f	class:TweetVault
+fetch_concepts	lib/tweet_vault.rb	/^  def fetch_concepts$/;"	f	class:TweetVault
+filter	lib/tweet_parser.rb	/^  def filter$/;"	f	class:TweetParser
+filter_trivial_words	lib/tweet_filter.rb	/^  def filter_trivial_words(words)$/;"	f	class:TweetFilter
+filter_words	lib/tweet_filter.rb	/^  def filter_words(words)$/;"	f	class:TweetFilter
+initialize	lib/tweet_parser.rb	/^  def initialize$/;"	f	class:TweetParser
+initialize	lib/tweet_vault.rb	/^  def initialize(amount_of_tweets)$/;"	f	class:TweetVault
+parser	lib/tweet_vault.rb	/^  def parser$/;"	f	class:TweetVault
+populate	lib/tweet_parser.rb	/^  def populate$/;"	f	class:TweetParser
+rank	lib/tweet_ranker.rb	/^  def rank(rankable)$/;"	f	class:TweetRanker
+rank_concepts	lib/tweet_ranker.rb	/^  def rank_concepts(words)$/;"	f	class:TweetRanker
+remove_hashtags	lib/tweet_filter.rb	/^  def remove_hashtags(words)$/;"	f	class:TweetFilter
+remove_hyperlinks	lib/tweet_filter.rb	/^  def remove_hyperlinks(words)$/;"	f	class:TweetFilter
+remove_tweeters	lib/tweet_filter.rb	/^  def remove_tweeters(words)$/;"	f	class:TweetFilter
+set_future_concepts	lib/tweet_vault.rb	/^  def set_future_concepts$/;"	f	class:TweetVault
+set_past_concepts	lib/tweet_vault.rb	/^  def set_past_concepts$/;"	f	class:TweetVault
+tweet_authors	lib/tweet_parser.rb	/^  def tweet_authors(tweets)$/;"	f	class:TweetParser
+tweet_texts	lib/tweet_parser.rb	/^  def tweet_texts(tweets)$/;"	f	class:TweetParser
+tweeters	lib/tweet_parser.rb	/^  def tweeters$/;"	f	class:TweetParser
+tweets	lib/tweet_parser.rb	/^  def tweets$/;"	f	class:TweetParser
+update_concepts	lib/tweet_vault.rb	/^  def update_concepts$/;"	f	class:TweetVault
+uri	lib/tweet_vault.rb	/^  def uri$/;"	f	class:TweetVault
+words	lib/tweet_parser.rb	/^  def words$/;"	f	class:TweetParser
+words	lib/tweet_vault.rb	/^  def words$/;"	f	class:TweetVault
