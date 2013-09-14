@@ -22,7 +22,7 @@ class TweetVault
   def past_concepts
     cc = concepts.map {|concept| concept["name"]}
     @pc.map do |concept|
-      cc.include?(concept[:name]) ? concept['ranked'] = true : concept['ranked'] = false
+      cc.include?(concept[:name]) ? concept[:ranked] = true : concept[:ranked] = false
       concept
     end
   end
@@ -30,7 +30,7 @@ class TweetVault
   def future_concepts
     cc = concepts.map {|concept| concept["name"]}
     @fc.map do |concept|
-      cc.include?(concept) ? concept['ranked'] = true : concept['ranked'] = false
+      cc.include?(concept[:name]) ? concept[:ranked] = true : concept[:ranked] = false
       concept
     end
   end
