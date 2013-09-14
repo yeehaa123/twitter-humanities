@@ -7,8 +7,8 @@ class TweetVault
   attr_reader :redis, :ranker, :parser
 
   def initialize(amount_of_tweets)
-    @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-    # @redis ||= Redis.new
+    # @redis  ||= Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+    @redis ||= Redis.new
     @ranker ||= TweetRanker.new
     @parser ||= TweetParser.new
     set_past_concepts
@@ -22,7 +22,7 @@ class TweetVault
   def past_concepts
     cc = concepts.map {|concept| concept["name"]}
     @pc.map do |concept|
-      cc.include?(concept) ? concept['ranked'] = true : concept['ranked'] = false
+      cc.include?(concept[:name]) ? concept['ranked'] = true : concept['ranked'] = false
       concept
     end
   end

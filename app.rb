@@ -39,6 +39,11 @@ get '/api/past_concepts' do
   @vault.past_concepts.to_json
 end
 
+get '/api/future_concepts' do
+  content_type :json
+  @vault.future_concepts.to_json
+end
+
 get '/api/tweeters' do
   content_type :json
   @vault.tweeters.to_json
