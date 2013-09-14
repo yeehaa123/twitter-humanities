@@ -62,7 +62,7 @@ class TweetVault
   end
 
   def set_future_concepts
-    @fc = %w{code algorithm javascript make future ruby html css language data visualisation}
+    @fc = %w{code algorithm javascript digital future ruby html css language data visualisation}
     @fc.map! {|concept| Hash[:name, concept, :ranked, false]}
   end
 
