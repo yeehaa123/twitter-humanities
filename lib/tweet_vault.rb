@@ -56,7 +56,7 @@ class TweetVault
   end
 
   def set_past_concepts
-    @pc = %w{art job hiring new degree bridge teacher education gap oppose history}
+    @pc = %w{art job phd teacher degree bridge teacher why gap digital science}
     @pc.map! {|concept| Hash[:name, concept, :ranked, false]}
   end
 
