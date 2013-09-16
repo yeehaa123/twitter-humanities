@@ -31,8 +31,7 @@ class TweetFilter
 
   def filter_trivial_words(words)
     trivial_words = <<-EOL 
-lord stern dont test phuckmat neh house harap lahat choice highered entering three humanities do not humanitiesthe could about geography percent sixty and oh know chelmsford have or is on the of for by to de RT the we how tawanan with yay zemon you what was saying without add day are ng ang any apchemalso through bexley big them than they yes yea write wrote makapagdrawing more rt via amp this finds your our from that if two ko my youve heres us make socialsciences in ba humanitie
-a i na sa thi c at p no it here be clas u publichumanitie should but like both way student side require altac 
+lord stern dont test phuckmat neh house harap lahat choice highered entering three humanities do not humanitiesthe could about geography percent sixty and oh know chelmsford have or is on the of for by to de RT the we how tawanan with yay zemon you what was saying without add day are ng ang any apchemalso through bexley big them than they yes yea write wrote makapagdrawing more rt via amp this finds your our from that if two ko my youve heres us make socialsciences in ba humanitie a i na sa thi c at p no it here be clas u publichumanitie should but like both way side require altac 
     EOL
     words.reject { |word| word if trivial_words.split(" ").include? word }
   end
